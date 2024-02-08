@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Wire+One&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  display: grid;
+  justify-items: center;
+}
+
+.portada {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: [uno] 92% [dos] 8% [tres];
+}
+
+.barra {
+  background-color: #1b1557;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.barra__style {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.barra__style li {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.barra ul a {
+  text-decoration: none;
+  color: white;
+}
+
+.cara {
+  background-image: url("../img/mar_fondo2.jpg");
+  background-size: cover;
+}
+
+.cara__logotipo {
+  object-fit: cover;
+  margin-left: 33vw;
+  margin-top: 15vh;
+}
+
+.separador {
+  background-color: #1b1557;
+}
+
+.gastro {
+  padding-top: 35px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-template-rows: [uno] 150px [dos] 400px [tres] 400px [cuatro];
+  justify-content: center;
+  justify-items: center;
+}
+
+.gastro header {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+}
+
+.plato {
+  text-align: center;
+}
+
+.plato--primero {
+  background-image: url("../img/plato01.png");
+  width: 280px;
+  height: 300px;
+  background-size: cover;
+}
+
+.plato--segundo {
+  background-image: url("../img/plato02.png");
+  width: 280px;
+  height: 300px;
+  background-size: cover;
+}
+
+.plato--tercero {
+  background-image: url("../img/plato03.png");
+  width: 280px;
+  height: 300px;
+  background-size: cover;
+}
+
+.plato--cuarto {
+  background-image: url("../img/plato04.png");
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+}
+
+.plato--quinto {
+  background-image: url("../img/plato05.png");
+  width: 280px;
+  height: 300px;
+  background-size: cover;
+}
+
+.plato--sexto {
+  background-image: url("../img/plato06.png");
+  width: 290px;
+  height: 300px;
+  background-size: cover;
+}
+
+hr {
+  color: black;
+}
+
+.miniSeparador--horizontal {
+  width: 60%;
+  height: 2px;
+  background-color: #1b1557;
+}
+
+.reserva {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  text-align: center;
+  margin: 20px;
+  margin-bottom: 40px;
+}
+
+.reserva__online button {
+  background-color: #1b1557;
+  color: white;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.reserva__online button a {
+  text-decoration: none;
+  color: white;
+}
+
+.nosotros {
+  padding-top: 35px;
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: [uno] 150px [dos] 500px [tres]200px[cuatro]; /*[tres]500[cuatro]200px[cinco]*/
+  justify-items: center;
+}
+
+.nosotros header {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+
+.nosotros__imagen {
+  background-image: url("../img/nosotros.jpg");
+  width: 290px;
+  height: 450px;
+  background-size: cover;
+}
+
+.nosotros_descripcion {
+  text-align: justify;
+  padding-right: 100px;
+}
+
+.nosotros__360 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+
+.nosotros__situacion {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+
+.foo {
+  width: 100%;
+  text-align: center;
+  background-color: #1b1557;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.foo a {
+  text-decoration: none;
+  color: white;
+}
