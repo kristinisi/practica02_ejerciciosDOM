@@ -28,6 +28,7 @@ body {
   list-style: none;
   display: flex;
   justify-content: center;
+  padding-top: 10px;
 }
 
 .barra__style li {
@@ -199,4 +200,29 @@ hr {
 .foo a {
   text-decoration: none;
   color: white;
+}
+
+/* --------------------------- */
+
+#categories img {
+  height: 300px;
+}
+
+#categories {
+  width: 80%;
+  list-style: none;
+  display: flex;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#categories div {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.categories__enlace {
+  text-decoration: none;
+  color: black;
 }

@@ -1,1 +1,1 @@
-import ManagerApp from "./manager/managerApp.js";
+import ManagerApp from "../js/managerApp.js";

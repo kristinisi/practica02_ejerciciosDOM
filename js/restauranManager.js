@@ -875,6 +875,18 @@ let RestaurantsManager = (function () {
       }
     }
 
+    getCategory(name) {
+      // Buscar la categoría por nombre
+      const category = this.#dishesCategory.find(
+        (cat) => cat.category.category.name === name
+      );
+      if (category) {
+        return category.category;
+      } else {
+        throw new Error("Category not found");
+      }
+    }
+
     //devuelve un objeto Dish si está registrado y si no, crea uno nuevo
     createDish(name = "undefined") {
       let dish;
