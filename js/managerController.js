@@ -15,12 +15,11 @@ class ManagerController {
     //Invocamos el evento y asignamos el manejador al bind
     this.onInit();
     this[VIEW].bindInit(this.handleInit);
-    this[VIEW].showCategories();
   }
 
   [LOAD_RESTAURANTS_MANAGER_OBJECTS]() {
     //Nos creamos las categorías
-    const category1 = this[MODEL].createCategory("Moluscos y Cefalópodos");
+    const category1 = this[MODEL].createCategory("Moluscos");
     category1.image = "./img/_calamar.png";
     category1.description =
       "Almejas, Mejillones, Navajas, Ostras, Calamares, Sepias, Pulpos...";
@@ -284,7 +283,8 @@ class ManagerController {
   };
 
   onInit = () => {
-    this[VIEW].bindProductsCategoryList(this.handleProductsCategoryList);
+    this[VIEW].showCategories();
+    this[VIEW].bindDishesCategoryList(this.handleProductsCategoryList);
   };
 
   handleInit = () => {
@@ -293,15 +293,15 @@ class ManagerController {
 
   onAddCategory = () => {
     this[VIEW].showCategoriesInMenu(this[MODEL].categories);
-    this[VIEW].bindProductsCategoryListInMenu(this.handleProductsCategoryList);
+    this[VIEW].bindDishesCategoryListInMenu(this.handleProductsCategoryList);
   };
 
   handleProductsCategoryList = (name) => {
-    const category = this[MODEL].getCategory(name);
+    const category = this[MODEL].createCategory(name);
     console.log(category);
     this[VIEW].listDishes(
       this[MODEL].getDishesInCategroy(category),
-      category.category.name
+      category.name
     );
   };
 }

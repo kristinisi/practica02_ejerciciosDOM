@@ -17,19 +17,19 @@ class ManagerView {
     this.categories.insertAdjacentHTML(
       "beforeend",
       `<div>
-        <a class='categories__enlace' href="#category-list" data-type="Moluscos">
+        <a class='categories__enlace' href="#category-list" data-category="Moluscos">
         <img src="./img/_calamar.png" alt="Categoría Moluscos y Cefalopodos">
           <h4>Moluscos y Cefalópodos</h4>
         </a>
       </div>
       <div>
-          <a class='categories__enlace' href="#category-list" data-type="Crustaceos">
+          <a class='categories__enlace' href="#category-list" data-category="Crustaceos">
               <img src="./img/_langosta.png" alt="Categoría Crustaceos">
               <h4>Crustáceos</h4>
           </a>
       </div>
       <div>
-          <a class='categories__enlace' href="#category-list" data-type="Pescados">
+          <a class='categories__enlace' href="#category-list" data-category="Pescados">
               <img src="./img/_pez.png" alt="Categoría Pescados">
               <h4>Pescados</h4>
           </a>
@@ -49,7 +49,7 @@ class ManagerView {
     for (const category of categories) {
       container.insertAdjacentHTML(
         "beforeend",
-        `<li><a datacategory="${category.category.name}" class="dropdown-item" href="#productlist">${category.category.name}</a></li>`
+        `<li><a data-category="${category.category.name}" class="dropdown-item" href="#productlist">${category.category.name}</a></li>`
       );
     }
     li.append(container);
@@ -58,45 +58,44 @@ class ManagerView {
 
   listDishes(dishes, name) {
     this.main.replaceChildren();
-    if (this.categories.children.length > 1)
-      this.categories.children[1].remove();
+    console.log("estoy aqui");
+    // if (this.categories.children.length > 1)
+    //   this.categories.children[1].remove();
     const container = document.createElement("div");
     container.id = "category-list";
-    // container.classList.add("container");
-    container.insertAdjacentHTML("beforeend", '<div class="row"> </div>');
+    container.insertAdjacentHTML("beforeend", '<div class="row"></div>');
 
     for (const dish of dishes) {
       const div = document.createElement("div");
       div.insertAdjacentHTML(
         "beforeend",
-        `
-        <div class="card" style="width: 18rem;">
-          <img src="${dish.image}" class="card-img-top">
-          <div class="card-body">
-            <h3 class="card-text">${dish.name}</h3>
-            <p class="card-text">${dish.description}</p>
-          </div>
-        </div>`
+        `<section class="plato">
+              <p>hola</p>
+              <img src="${dish.image}">
+              <div>${dish.name}</div>
+              <p>${dish.description}</p>
+        </section>`
       );
       container.children[0].append(div);
     }
     container.insertAdjacentHTML("afterbegin", `<h1>${name}</h1>`);
-    this.categories.append(container);
+    this.main.append(container);
   }
 
   //Dos métodos que enlazan el manejador con los elementos de la pagina
-  bindProductsCategoryList(handler) {
-    const categoryList = document.getElementById("category-list");
+  bindDishesCategoryList(handler) {
+    const categoryList = document.getElementById("categories");
     console.log(categoryList);
-    // const links = categoryList.querySelectorAll("card");
-    // for (const link of links) {
-    //   link.addEventListener("click", (event) => {
-    //     handler(event.currentTarget.dataset.category);
-    //   });
-    // }
+    const links = categoryList.querySelectorAll("a");
+    console.log(links);
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        handler(event.currentTarget.dataset.category);
+      });
+    }
   }
 
-  bindProductsCategoryListInMenu(handler) {
+  bindDishesCategoryListInMenu(handler) {
     const navCats = document.getElementById("navCats");
     const links = navCats.nextSibling.querySelectorAll("a");
     for (const link of links) {

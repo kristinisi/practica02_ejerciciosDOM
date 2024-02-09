@@ -174,7 +174,7 @@ let RestaurantsManager = (function () {
     //Dado una categoría, devuelve la posición de esa categoría o -1 si no lo encontramos
     #getCategoryPosition(obj) {
       return this.#dishesCategory.findIndex(
-        (busqueda) => busqueda.category === obj.category
+        (busqueda) => busqueda.category.name === obj.category.name
       );
     }
 
@@ -872,18 +872,6 @@ let RestaurantsManager = (function () {
       //devolvemos los platos
       for (let dish of dishesArray) {
         yield dish;
-      }
-    }
-
-    getCategory(name) {
-      // Buscar la categoría por nombre
-      const category = this.#dishesCategory.find(
-        (cat) => cat.category.category.name === name
-      );
-      if (category) {
-        return category.category;
-      } else {
-        throw new Error("Category not found");
       }
     }
 
