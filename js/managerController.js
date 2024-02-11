@@ -23,7 +23,7 @@ class ManagerController {
     category1.image = "./img/_calamar.png";
     category1.description =
       "Almejas, Mejillones, Navajas, Ostras, Calamares, Sepias, Pulpos...";
-    const category2 = this[MODEL].createCategory("Crustáceos");
+    const category2 = this[MODEL].createCategory("Crustaceos");
     category2.image = "./img/_langosta.png";
     category2.description =
       "Gambas, Langostinos, Cangrejos, Langostas, Bogavante, Centollo...";

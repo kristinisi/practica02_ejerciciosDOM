@@ -108,14 +108,14 @@ class ManagerView {
   }
 
   showRandomDishes(dishes) {
-    const container = document.createElement("div");
+    const container = document.createElement("section");
     container.id = "random-dishes";
     container.insertAdjacentHTML(
       "beforeend",
-      `<section class="seccion__plato">
+      `
         <div class="miniSeparador"></div>
-        <h3>Algunos de nuestros platos...</h3>
-      </section>`
+        <h3 class="tit">Algunos de nuestros platos...</h3>
+      `
     );
 
     for (const dish of dishes) {
@@ -123,11 +123,11 @@ class ManagerView {
       div.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="plato"><img src="${dish.image}">
-              <h4>${dish.name}</h4>
-          </div>`
+        <div class="plato plato2">
+              <img src="${dish.image}">
+        </div>`
       );
-      container.children[0].append(div);
+      container.append(div);
     }
     this.main.appendChild(container);
   }

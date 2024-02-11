@@ -209,6 +209,8 @@ hr {
   list-style: none;
   display: flex;
   text-align: center;
+  margin: auto;
+  margin-right: 15%;
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -291,4 +293,34 @@ hr {
 
 .dropdown-menu li {
   padding: 0;
+}
+
+main {
+  justify-content: center;
+  width: 80%;
+}
+
+#random-dishes {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-template-rows: [uno] 50px [dos] 50px [tres] 380px [cuatro];
+  justify-content: center;
+}
+
+.miniSeparador {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.tit {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  justify-content: center;
+}
+
+.plato2 {
+  display: flex;
+  justify-content: center;
 }
