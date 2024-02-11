@@ -5,7 +5,7 @@ class ManagerView {
     this.menu = document.querySelector(".barra__style");
   }
 
-  //Creamo el bind para los enlaces de inicio
+  //Creamos el bind para los enlaces de inicio
   bindInit(handler) {
     document.getElementById("init").addEventListener("click", (event) => {
       handler();
@@ -58,23 +58,25 @@ class ManagerView {
 
   listDishes(dishes, name) {
     this.main.replaceChildren();
-    console.log("estoy aqui");
-    // if (this.categories.children.length > 1)
-    //   this.categories.children[1].remove();
+    this.main.classList.add("cambiar--fondo");
+
     const container = document.createElement("div");
     container.id = "category-list";
-    container.insertAdjacentHTML("beforeend", '<div class="row"></div>');
+    container.insertAdjacentHTML(
+      "beforeend",
+      '<section class="row seccion__plato"></section>'
+    );
 
     for (const dish of dishes) {
       const div = document.createElement("div");
       div.insertAdjacentHTML(
         "beforeend",
-        `<section class="plato">
-              <p>hola</p>
-              <img src="${dish.image}">
-              <div>${dish.name}</div>
+        `
+        <div class="miniSeparador"></div>
+        <div class="plato"><img src="${dish.image}">
+              <h4>${dish.name}</h4>
               <p>${dish.description}</p>
-        </section>`
+          </div>`
       );
       container.children[0].append(div);
     }
@@ -103,6 +105,31 @@ class ManagerView {
         handler(event.currentTarget.dataset.category);
       });
     }
+  }
+
+  showRandomDishes(dishes) {
+    const container = document.createElement("div");
+    container.id = "random-dishes";
+    container.insertAdjacentHTML(
+      "beforeend",
+      `<section class="seccion__plato">
+        <div class="miniSeparador"></div>
+        <h3>Algunos de nuestros platos...</h3>
+      </section>`
+    );
+
+    for (const dish of dishes) {
+      const div = document.createElement("div");
+      div.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="plato"><img src="${dish.image}">
+              <h4>${dish.name}</h4>
+          </div>`
+      );
+      container.children[0].append(div);
+    }
+    this.main.appendChild(container);
   }
 }
 export default ManagerView;

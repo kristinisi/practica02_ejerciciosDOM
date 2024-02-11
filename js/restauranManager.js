@@ -959,6 +959,19 @@ let RestaurantsManager = (function () {
       }
       return restaurant;
     }
+
+    //devuelve 3 platos aleatorios del array platos
+    getRandomDishes() {
+      const randoms = [];
+      const arrSize = this.#dishes.length;
+
+      for (let i = 0; i < 3; i++) {
+        const index = Math.floor(Math.random() * arrSize);
+        randoms.push(this.#dishes[index]);
+      }
+
+      return randoms;
+    }
   }
 
   //Inicialización del Singleton

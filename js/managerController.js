@@ -23,7 +23,7 @@ class ManagerController {
     category1.image = "./img/_calamar.png";
     category1.description =
       "Almejas, Mejillones, Navajas, Ostras, Calamares, Sepias, Pulpos...";
-    const category2 = this[MODEL].createCategory("Crustaceos");
+    const category2 = this[MODEL].createCategory("Crustáceos");
     category2.image = "./img/_langosta.png";
     category2.description =
       "Gambas, Langostinos, Cangrejos, Langostas, Bogavante, Centollo...";
@@ -283,8 +283,11 @@ class ManagerController {
   };
 
   onInit = () => {
-    this[VIEW].showCategories();
-    this[VIEW].bindDishesCategoryList(this.handleProductsCategoryList);
+    //carga las categorías al iniciar la página principal
+    this[VIEW].showCategories(this[MODEL].categories);
+    const randoms = this[MODEL].getRandomDishes();
+    this[VIEW].showRandomDishes(randoms);
+    this[VIEW].bindDishesCategoryList(this.handleDishesCategoryList);
   };
 
   handleInit = () => {
@@ -293,10 +296,10 @@ class ManagerController {
 
   onAddCategory = () => {
     this[VIEW].showCategoriesInMenu(this[MODEL].categories);
-    this[VIEW].bindDishesCategoryListInMenu(this.handleProductsCategoryList);
+    this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
   };
 
-  handleProductsCategoryList = (name) => {
+  handleDishesCategoryList = (name) => {
     const category = this[MODEL].createCategory(name);
     console.log(category);
     this[VIEW].listDishes(
