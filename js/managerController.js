@@ -70,12 +70,15 @@ class ManagerController {
     const restaurante1 = this[MODEL].createRestaurant("MAR ORIGIN");
     restaurante1.description =
       "Situado en el corazón de Madrid, nuestro primer restaurante, el original";
+    restaurante1.image = "./img/origin.jpg";
     const restaurante2 = this[MODEL].createRestaurant("MAR LITORAL");
     restaurante2.description =
-      "Situado en el corazón de Cadiz, donde nuestro producto salta a la mesa.";
+      "Situado a pie de playa en Cadiz, donde nuestro producto salta a la mesa.";
+    restaurante2.image = "./img/litoral.jpg";
     const restaurante3 = this[MODEL].createRestaurant("MAR CONTINENTAL");
     restaurante3.description =
       "Situado en el corazón de Segovia, un sitio encantador donde te trasladará al mar en un solo bocado.";
+    restaurante3.image = "./img/continental.jpg";
 
     //Añadimos los restaurantes
     this[MODEL].addRestaurant(restaurante1, restaurante2, restaurante3);
@@ -150,7 +153,7 @@ class ManagerController {
     ];
     plato7.image = "./img/plato10.png";
 
-    const plato8 = this[MODEL].createDish("Patel de centollo");
+    const plato8 = this[MODEL].createDish("Pastel de centollo");
     plato8.description =
       "Una mezcla delicada de carne fresca de centollo en una masa finamente elaborada. Un deleite marino en cada bocado.";
     plato8.ingredients = [
@@ -304,12 +307,12 @@ class ManagerController {
 
   onAddAllergen = () => {
     this[VIEW].showAllergensInMenu(this[MODEL].allergens);
-    // this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
+    this[VIEW].bindDishesAlleregnListInMenu(this.handleDishesAllergenList);
   };
 
   onAddMenu = () => {
     this[VIEW].showMenuInMenu(this[MODEL].menus);
-    // this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
+    this[VIEW].bindDishesMenuListInMenu(this.handleDishesMenuList);
   };
 
   onAddRestaurant = () => {
@@ -324,7 +327,26 @@ class ManagerController {
       this[MODEL].getDishesInCategroy(category),
       category.name
     );
-    this[VIEW].bindDishClick(this.handleDish);
+    this[VIEW].bindDishClickCategory(this.handleDish);
+  };
+
+  handleDishesAllergenList = (name) => {
+    console.log(name);
+    const allergen = this[MODEL].createAllergen(name);
+    console.log(allergen);
+    this[VIEW].listDishes(
+      this[MODEL].getDishesWithAllergen(allergen),
+      allergen.name
+    );
+    this[VIEW].bindDishClickAllergen(this.handleDish);
+  };
+
+  handleDishesMenuList = (name) => {
+    console.log(name);
+    const menu = this[MODEL].createMenu(name);
+    console.log(menu);
+    this[VIEW].listDishes(this[MODEL].getDishesWithMenu(menu), menu.name);
+    this[VIEW].bindDishClickAllergen(this.handleDish);
   };
 
   handleDish = (name) => {

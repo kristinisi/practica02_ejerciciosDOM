@@ -180,13 +180,15 @@ let RestaurantsManager = (function () {
 
     //Dado un Menu, devuelve la posición de ese menú o -1 si no lo encontramos
     #getMenuPosition(obj) {
-      return this.#menus.findIndex((busqueda) => busqueda.menu === obj.menu);
+      return this.#menus.findIndex(
+        (busqueda) => busqueda.menu.name === obj.menu.name
+      );
     }
 
     //Dado una alergia, devuelve la posición de esa alergoa o -1 so no lo encontramos
     #getAllergenPosition(obj) {
       return this.#allergenType.findIndex(
-        (busqueda) => busqueda.allerge === obj.allerge
+        (busqueda) => busqueda.allerge.name === obj.allerge.name
       );
     }
 
@@ -854,6 +856,40 @@ let RestaurantsManager = (function () {
         }
       } else {
         throw new AllergenNotExistsInTheListException();
+      }
+    }
+
+    //obtiene un iterador con los platos que tiene un determinado menú. El iterador puede estar ordenado
+    *getDishesWithMenu(menu, comparison = null) {
+      //primero nos aseguramos que introducimos un tipo de menu
+      if (!(menu instanceof Menu)) {
+        throw new MenuException();
+      }
+      if (menu === null) {
+        throw new EmptyValueException();
+      }
+
+      //segundo tenemos que encontrar el alergeno
+      let obj = { menu: menu };
+      let menuPosition = this.#getMenuPosition(obj);
+      if (menuPosition !== -1) {
+        //sacamos el objeto del menu con el que queremos trabajar
+        let objMenu = this.#menus[menuPosition];
+        //nos creamos un array para ir guardando los platos
+        let dishesArray = [];
+        for (let di of objMenu.dishes) {
+          dishesArray.push(di);
+        }
+        //ahora que ya tenemos todos los platos en un array, ordenamos el array en caso de que nos haya llegado la funcion
+        if (comparison) {
+          dishesArray.sort(comparison);
+        }
+        //devolvemos los platos
+        for (let dish of dishesArray) {
+          yield dish;
+        }
+      } else {
+        throw new MenuNotExistsInTheListException();
       }
     }
 

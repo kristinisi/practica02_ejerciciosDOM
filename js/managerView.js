@@ -142,7 +142,7 @@ class ManagerView {
     this.main.classList.add("cambiar--fondo");
 
     const container = document.createElement("div");
-    container.id = "category-list";
+    container.id = "dishes-list";
     container.insertAdjacentHTML(
       "beforeend",
       '<section class="row seccion__plato"></section>'
@@ -168,7 +168,7 @@ class ManagerView {
     this.main.append(container);
   }
 
-  //Dos métodos que enlazan el manejador con los elementos de la pagina
+  //Dos métodos que enlazan el manejador con los elementos de la pagina categoria
   bindDishesCategoryList(handler) {
     const categoryList = document.getElementById("categories");
     console.log(categoryList);
@@ -187,6 +187,27 @@ class ManagerView {
     for (const link of links) {
       link.addEventListener("click", (event) => {
         handler(event.currentTarget.dataset.category);
+        console.log(event.currentTarget.dataset.category);
+      });
+    }
+  }
+
+  bindDishesAlleregnListInMenu(handler) {
+    const navAller = document.getElementById("navAller");
+    const links = navAller.nextSibling.querySelectorAll("a");
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        handler(event.currentTarget.dataset.allergen);
+      });
+    }
+  }
+
+  bindDishesMenuListInMenu(handler) {
+    const navMenu = document.getElementById("navMenu");
+    const links = navMenu.nextSibling.querySelectorAll("a");
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        handler(event.currentTarget.dataset.menu);
       });
     }
   }
@@ -222,8 +243,19 @@ class ManagerView {
     this.main.append(container);
   }
 
-  bindDishClick(handler) {
-    const dishlist = document.getElementById("category-list");
+  bindDishClickCategory(handler) {
+    const dishlist = document.getElementById("dishes-list");
+    const links = dishlist.querySelectorAll("a.imagen");
+
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        handler(event.currentTarget.dataset.name);
+      });
+    }
+  }
+
+  bindDishClickAllergen(handler) {
+    const dishlist = document.getElementById("dishes-list");
     const links = dishlist.querySelectorAll("a.imagen");
 
     for (const link of links) {

@@ -210,9 +210,8 @@ hr {
   display: flex;
   text-align: center;
   margin: auto;
-  margin-right: 15%;
-  margin-top: 50px;
   margin-bottom: 50px;
+  margin-left: 13%;
 }
 
 #categories div {
@@ -225,7 +224,7 @@ hr {
   color: black;
 }
 
-#category-list {
+#dishes-list {
   width: 40%;
   margin: auto;
   text-align: center;
@@ -305,7 +304,8 @@ hr {
 
 main {
   justify-content: center;
-  width: 80%;
+  width: 100%;
+  text-align: center;
 }
 
 #random-dishes {

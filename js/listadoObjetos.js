@@ -253,6 +253,7 @@ class Restaurant {
   // Campos privados
   #name;
   #description;
+  #image;
   #location;
   constructor(name) {
     //Verificador con el operador new
@@ -289,6 +290,18 @@ class Restaurant {
         if (typeof value !== "string")
           throw new InvalidValueException("descrition", value);
         this.#description = value;
+      },
+    });
+    Object.defineProperty(this, "image", {
+      enumerable: true,
+      get() {
+        return this.#image;
+      },
+      set(value) {
+        if (!value) throw new EmptyValueException("image");
+        if (typeof value !== "string")
+          throw new InvalidValueException("image", value);
+        this.#image = value;
       },
     });
     Object.defineProperty(this, "location", {
