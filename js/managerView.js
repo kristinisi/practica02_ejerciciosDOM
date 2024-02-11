@@ -243,7 +243,7 @@ class ManagerView {
     this.main.append(container);
   }
 
-  bindDishClickCategory(handler) {
+  bindDishClick(handler) {
     const dishlist = document.getElementById("dishes-list");
     const links = dishlist.querySelectorAll("a.imagen");
 
@@ -254,13 +254,36 @@ class ManagerView {
     }
   }
 
-  bindDishClickAllergen(handler) {
-    const dishlist = document.getElementById("dishes-list");
-    const links = dishlist.querySelectorAll("a.imagen");
+  showRestaurant(restaurant) {
+    this.main.replaceChildren();
+    const container = document.createElement("div");
+    container.classList.add("container");
 
+    if (restaurant) {
+      console.log(restaurant.restaurant.description);
+      container.id = "restaurant";
+      container.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="card text-bg-dark">
+          <img src="${restaurant.restaurant.image}" class="card-img">
+          <div class="card-img-overlay">
+            <h5 class="card-title">${restaurant.restaurant.name}</h5>
+            <p class="card-text">${restaurant.restaurant.description}</p>
+          </div>
+        </div>
+        `
+      );
+    }
+    this.main.append(container);
+  }
+
+  bindRestaurantListInMenu(handler) {
+    const navMenu = document.getElementById("navRest");
+    const links = navMenu.nextSibling.querySelectorAll("a");
     for (const link of links) {
       link.addEventListener("click", (event) => {
-        handler(event.currentTarget.dataset.name);
+        handler(event.currentTarget.dataset.restaurant);
       });
     }
   }

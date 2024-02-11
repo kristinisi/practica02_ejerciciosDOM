@@ -317,7 +317,7 @@ class ManagerController {
 
   onAddRestaurant = () => {
     this[VIEW].showRestaurantsInMenu(this[MODEL].restaurants);
-    // this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
+    this[VIEW].bindRestaurantListInMenu(this.handleRestaurant);
   };
 
   handleDishesCategoryList = (name) => {
@@ -327,7 +327,7 @@ class ManagerController {
       this[MODEL].getDishesInCategroy(category),
       category.name
     );
-    this[VIEW].bindDishClickCategory(this.handleDish);
+    this[VIEW].bindDishClick(this.handleDish);
   };
 
   handleDishesAllergenList = (name) => {
@@ -338,7 +338,7 @@ class ManagerController {
       this[MODEL].getDishesWithAllergen(allergen),
       allergen.name
     );
-    this[VIEW].bindDishClickAllergen(this.handleDish);
+    this[VIEW].bindDishClick(this.handleDish);
   };
 
   handleDishesMenuList = (name) => {
@@ -346,13 +346,19 @@ class ManagerController {
     const menu = this[MODEL].createMenu(name);
     console.log(menu);
     this[VIEW].listDishes(this[MODEL].getDishesWithMenu(menu), menu.name);
-    this[VIEW].bindDishClickAllergen(this.handleDish);
+    this[VIEW].bindDishClick(this.handleDish);
   };
 
   handleDish = (name) => {
     const dish = this[MODEL].createDish(name);
     console.log(dish);
     this[VIEW].showDish(dish);
+  };
+
+  handleRestaurant = (name) => {
+    const rest = this[MODEL].createRestaurant(name);
+    console.log(rest);
+    this[VIEW].showRestaurant(rest);
   };
 }
 export default ManagerController;

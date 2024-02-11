@@ -982,10 +982,12 @@ let RestaurantsManager = (function () {
     //devuelve un objeto Restaurant si está registrado y si no, crea uno nuevo
     createRestaurant(name = "undefined") {
       let restaurant;
+      console.log(this.#restaurants);
       //hacemos una búsqueda para ver si encontramos el alergeno o no
       let restaurantPosition = this.#restaurants.findIndex(
-        (busqueda) => busqueda.name === name
+        (busqueda) => busqueda.restaurant.name === name
       );
+      console.log(restaurantPosition);
       if (restaurantPosition !== -1) {
         //hemos encontrado el plato asique lo devolvemos luego
         restaurant = this.#restaurants[restaurantPosition];

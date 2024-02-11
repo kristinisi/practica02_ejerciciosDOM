@@ -267,6 +267,7 @@ class Restaurant {
     this.#name = name;
     this.#description = "";
     this.#location = "";
+    this.#image = "";
 
     Object.defineProperty(this, "name", {
       enumerable: true,
