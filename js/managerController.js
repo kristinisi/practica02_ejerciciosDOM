@@ -280,6 +280,9 @@ class ManagerController {
   onLoad = () => {
     this[LOAD_RESTAURANTS_MANAGER_OBJECTS]();
     this.onAddCategory();
+    this.onAddAllergen();
+    this.onAddMenu();
+    this.onAddRestaurant();
   };
 
   onInit = () => {
@@ -299,6 +302,21 @@ class ManagerController {
     this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
   };
 
+  onAddAllergen = () => {
+    this[VIEW].showAllergensInMenu(this[MODEL].allergens);
+    // this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
+  };
+
+  onAddMenu = () => {
+    this[VIEW].showMenuInMenu(this[MODEL].menus);
+    // this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
+  };
+
+  onAddRestaurant = () => {
+    this[VIEW].showRestaurantsInMenu(this[MODEL].restaurants);
+    // this[VIEW].bindDishesCategoryListInMenu(this.handleDishesCategoryList);
+  };
+
   handleDishesCategoryList = (name) => {
     const category = this[MODEL].createCategory(name);
     console.log(category);
@@ -306,6 +324,13 @@ class ManagerController {
       this[MODEL].getDishesInCategroy(category),
       category.name
     );
+    this[VIEW].bindDishClick(this.handleDish);
+  };
+
+  handleDish = (name) => {
+    const dish = this[MODEL].createDish(name);
+    console.log(dish);
+    this[VIEW].showDish(dish);
   };
 }
 export default ManagerController;

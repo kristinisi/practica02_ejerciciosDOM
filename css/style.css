@@ -274,12 +274,20 @@ hr {
 
 #navCats:hover,
 #navCats:active,
-#navCats:focus {
+#navCats:focus,
+#navAller:hover,
+#navAller:active,
+#navAller:focus,
+#navMenu:hover,
+#navMenu:active,
+#navMenu:focus,
+#navRest:hover,
+#navRest:active,
+#navRest:focus {
   color: white;
 }
 
 .dropdown-item {
-  color: orange;
   background-color: #1b1557;
 }
 
@@ -323,4 +331,11 @@ main {
 .plato2 {
   display: flex;
   justify-content: center;
+}
+
+#single-dish {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+  margin-top: 70px;
 }

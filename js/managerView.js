@@ -36,6 +36,30 @@ class ManagerView {
       </div>`
     );
   }
+  showRandomDishes(dishes) {
+    const container = document.createElement("section");
+    container.id = "random-dishes";
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="miniSeparador"></div>
+        <h3 class="tit">Algunos de nuestros platos...</h3>
+      `
+    );
+
+    for (const dish of dishes) {
+      const div = document.createElement("div");
+      div.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="plato plato2">
+              <img src="${dish.image}">
+        </div>`
+      );
+      container.append(div);
+    }
+    this.main.appendChild(container);
+  }
 
   showCategoriesInMenu(categories) {
     const li = document.createElement("li");
@@ -50,6 +74,63 @@ class ManagerView {
       container.insertAdjacentHTML(
         "beforeend",
         `<li><a data-category="${category.category.name}" class="dropdown-item" href="#productlist">${category.category.name}</a></li>`
+      );
+    }
+    li.append(container);
+    this.menu.append(li);
+  }
+
+  showAllergensInMenu(allergens) {
+    const li = document.createElement("li");
+    li.classList.add("nav-item", "dropdown");
+    li.insertAdjacentHTML(
+      "beforeend",
+      `<a class="nav-link dropdown-toggle" href="#" id="navAller" role="button"     data-bs-toggle="dropdown" aria-expanded="false">Alérgenos</a>`
+    );
+    const container = document.createElement("ul");
+    container.classList.add("dropdown-menu");
+    for (const allergen of allergens) {
+      container.insertAdjacentHTML(
+        "beforeend",
+        `<li><a data-allergen="${allergen.allerge.name}" class="dropdown-item" href="#productlist">${allergen.allerge.name}</a></li>`
+      );
+    }
+    li.append(container);
+    this.menu.append(li);
+  }
+
+  showMenuInMenu(menus) {
+    const li = document.createElement("li");
+    li.classList.add("nav-item", "dropdown");
+    li.insertAdjacentHTML(
+      "beforeend",
+      `<a class="nav-link dropdown-toggle" href="#" id="navMenu" role="button"     data-bs-toggle="dropdown" aria-expanded="false">Menús</a>`
+    );
+    const container = document.createElement("ul");
+    container.classList.add("dropdown-menu");
+    for (const menu of menus) {
+      container.insertAdjacentHTML(
+        "beforeend",
+        `<li><a data-menu="${menu.menu.name}" class="dropdown-item" href="#productlist">${menu.menu.name}</a></li>`
+      );
+    }
+    li.append(container);
+    this.menu.append(li);
+  }
+
+  showRestaurantsInMenu(restaurants) {
+    const li = document.createElement("li");
+    li.classList.add("nav-item", "dropdown");
+    li.insertAdjacentHTML(
+      "beforeend",
+      `<a class="nav-link dropdown-toggle" href="#" id="navRest" role="button"     data-bs-toggle="dropdown" aria-expanded="false">Restaurantes</a>`
+    );
+    const container = document.createElement("ul");
+    container.classList.add("dropdown-menu");
+    for (const restaurant of restaurants) {
+      container.insertAdjacentHTML(
+        "beforeend",
+        `<li><a data-restaurant="${restaurant.restaurant.name}" class="dropdown-item" href="#productlist">${restaurant.restaurant.name}</a></li>`
       );
     }
     li.append(container);
@@ -73,7 +154,10 @@ class ManagerView {
         "beforeend",
         `
         <div class="miniSeparador"></div>
-        <div class="plato"><img src="${dish.image}">
+        <div class="plato">
+              <a class='imagen' data-name='${dish.name}'>
+                <img src="${dish.image}" style="cursor: pointer">
+              </a>
               <h4>${dish.name}</h4>
               <p>${dish.description}</p>
           </div>`
@@ -107,29 +191,46 @@ class ManagerView {
     }
   }
 
-  showRandomDishes(dishes) {
-    const container = document.createElement("section");
-    container.id = "random-dishes";
-    container.insertAdjacentHTML(
-      "beforeend",
-      `
-        <div class="miniSeparador"></div>
-        <h3 class="tit">Algunos de nuestros platos...</h3>
-      `
-    );
+  showDish(dish) {
+    this.main.replaceChildren();
+    const container = document.createElement("div");
+    container.classList.add("container");
 
-    for (const dish of dishes) {
-      const div = document.createElement("div");
-      div.insertAdjacentHTML(
+    if (dish) {
+      container.id = "single-dish";
+      const ingredientsList = dish.ingredients.join(", ");
+      container.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="plato plato2">
-              <img src="${dish.image}">
-        </div>`
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="${dish.image}" class="img-fluid rounded-start">
+            </div>  
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">${dish.name}</h5>
+                <p class="card-text">${dish.description}</p>
+                <p class="card-text"><small class="text-body-secondary">${ingredientsList}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
       );
-      container.append(div);
     }
-    this.main.appendChild(container);
+    this.main.append(container);
+  }
+
+  bindDishClick(handler) {
+    const dishlist = document.getElementById("category-list");
+    const links = dishlist.querySelectorAll("a.imagen");
+
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        handler(event.currentTarget.dataset.name);
+      });
+    }
   }
 }
 export default ManagerView;
