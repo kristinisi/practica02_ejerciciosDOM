@@ -1,6 +1,6 @@
 class ManagerView {
   constructor() {
-    this.main = document.getElementsByTagName("main")[0];
+    this.main = document.getElementById("main");
     this.categories = document.getElementById("categories");
     this.menu = document.querySelector(".barra__style");
   }
@@ -13,6 +13,9 @@ class ManagerView {
   }
 
   showCategories() {
+    if (this.categories.children.length > 0) {
+      this.categories.children[0].remove();
+    }
     this.categories.replaceChildren();
     this.categories.insertAdjacentHTML(
       "beforeend",
@@ -37,6 +40,9 @@ class ManagerView {
     );
   }
   showRandomDishes(dishes) {
+    if (this.main.children.length > 0) {
+      this.main.children[0].remove();
+    }
     const container = document.createElement("section");
     container.id = "random-dishes";
     container.insertAdjacentHTML(
