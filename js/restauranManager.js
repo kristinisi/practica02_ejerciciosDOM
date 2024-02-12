@@ -1003,9 +1003,11 @@ let RestaurantsManager = (function () {
       const randoms = [];
       const arrSize = this.#dishes.length;
 
-      for (let i = 0; i < 3; i++) {
+      while (randoms.length < 3) {
         const index = Math.floor(Math.random() * arrSize);
-        randoms.push(this.#dishes[index]);
+        if (!randoms.includes(this.#dishes[index])) {
+          randoms.push(this.#dishes[index]);
+        }
       }
 
       return randoms;

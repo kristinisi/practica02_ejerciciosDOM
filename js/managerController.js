@@ -73,7 +73,7 @@ class ManagerController {
     restaurante1.image = "./img/origin.jpg";
     const restaurante2 = this[MODEL].createRestaurant("MAR LITORAL");
     restaurante2.description =
-      "Situado a pie de playa en Cadiz, donde nuestro producto salta a la mesa.";
+      "Situado a pie de playa en Cádiz, donde nuestro producto salta a la mesa.";
     restaurante2.image = "./img/litoral.jpg";
     const restaurante3 = this[MODEL].createRestaurant("MAR CONTINENTAL");
     restaurante3.description =
@@ -325,7 +325,8 @@ class ManagerController {
     console.log(category);
     this[VIEW].listDishes(
       this[MODEL].getDishesInCategroy(category),
-      category.name
+      category.name,
+      "Categorías"
     );
     this[VIEW].bindDishClick(this.handleDish);
   };
@@ -336,7 +337,8 @@ class ManagerController {
     console.log(allergen);
     this[VIEW].listDishes(
       this[MODEL].getDishesWithAllergen(allergen),
-      allergen.name
+      allergen.name,
+      "Alérgenos"
     );
     this[VIEW].bindDishClick(this.handleDish);
   };
@@ -344,14 +346,16 @@ class ManagerController {
   handleDishesMenuList = (name) => {
     console.log(name);
     const menu = this[MODEL].createMenu(name);
-    console.log(menu);
-    this[VIEW].listDishes(this[MODEL].getDishesWithMenu(menu), menu.name);
+    this[VIEW].listDishes(
+      this[MODEL].getDishesWithMenu(menu),
+      menu.name,
+      "Menús"
+    );
     this[VIEW].bindDishClick(this.handleDish);
   };
 
   handleDish = (name) => {
     const dish = this[MODEL].createDish(name);
-    console.log(dish);
     this[VIEW].showDish(dish);
   };
 

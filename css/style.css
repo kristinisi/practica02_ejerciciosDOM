@@ -336,11 +336,15 @@ main {
 #single-dish {
   display: flex;
   justify-content: center;
-  margin: 50px;
-  margin-top: 70px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 #restaurant {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+#migas {
+  margin-left: 5%;
 }

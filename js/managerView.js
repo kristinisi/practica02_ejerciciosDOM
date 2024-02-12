@@ -13,10 +13,9 @@ class ManagerView {
   }
 
   showCategories() {
-    if (this.categories.children.length > 0) {
-      this.categories.children[0].remove();
-    }
     this.categories.replaceChildren();
+    const container = document.createElement("section");
+    container.id = "section-div";
     this.categories.insertAdjacentHTML(
       "beforeend",
       `<div>
@@ -38,6 +37,7 @@ class ManagerView {
           </a>
       </div>`
     );
+    this.categories.appendChild(container);
   }
   showRandomDishes(dishes) {
     if (this.main.children.length > 0) {
@@ -143,9 +143,24 @@ class ManagerView {
     this.menu.append(li);
   }
 
-  listDishes(dishes, name) {
+  listDishes(dishes, name, pageTitle) {
+    this.categories.replaceChildren();
     this.main.replaceChildren();
     this.main.classList.add("cambiar--fondo");
+
+    const nav = document.createElement("nav");
+    nav.id = "migas";
+    nav.ariaLabel = "breadcrumbs";
+    nav.insertAdjacentHTML(
+      "beforeend",
+      `
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item">Inicio</li>
+       <li class="breadcrumb-item">${pageTitle}</li>
+       <li class="breadcrumb-item active">${name}</li>
+      </ol>
+      `
+    );
 
     const container = document.createElement("div");
     container.id = "dishes-list";
@@ -170,6 +185,7 @@ class ManagerView {
       );
       container.children[0].append(div);
     }
+    this.main.append(nav);
     container.insertAdjacentHTML("afterbegin", `<h1>${name}</h1>`);
     this.main.append(container);
   }
@@ -219,7 +235,23 @@ class ManagerView {
   }
 
   showDish(dish) {
+    this.categories.replaceChildren();
     this.main.replaceChildren();
+
+    const nav = document.querySelector("breadcrumb");
+    console.log(nav);
+    // const ultimoLi = nav.lastElementChild();
+    // console.log(ultimoLi);
+    // const ultimo = document.createElement("li");
+    // ultimo.classList.add("breadcrumb-item", "active");
+    // nav.ariaLabel = "breadcrumbs";
+    // nav.insertAdjacentHTML(
+    //   "beforeend",
+    //   `
+
+    //   `
+    // );
+
     const container = document.createElement("div");
     container.classList.add("container");
 
@@ -246,6 +278,7 @@ class ManagerView {
         `
       );
     }
+    this.main.append(nav);
     this.main.append(container);
   }
 
@@ -261,6 +294,7 @@ class ManagerView {
   }
 
   showRestaurant(restaurant) {
+    this.categories.replaceChildren();
     this.main.replaceChildren();
     const container = document.createElement("div");
     container.classList.add("container");
