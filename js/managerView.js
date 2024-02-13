@@ -233,22 +233,18 @@ class ManagerView {
   }
 
   showDish(dish) {
+    const nav = document.querySelector(".breadcrumb");
+    nav.id = "migas_plato";
+    const ultimoLi = nav.querySelector(".active");
+    console.log(ultimoLi);
+    ultimoLi.classList.remove("active");
+    const li = document.createElement("li");
+    li.classList.add("breadcrumb-item", "active");
+    li.textContent = "Plato";
+    nav.insertAdjacentElement("beforeend", li);
+
     this.categories.replaceChildren();
     this.main.replaceChildren();
-
-    const nav = document.querySelector("breadcrumb");
-    console.log(nav);
-    // const ultimoLi = nav.lastElementChild();
-    // console.log(ultimoLi);
-    // const ultimo = document.createElement("li");
-    // ultimo.classList.add("breadcrumb-item", "active");
-    // nav.ariaLabel = "breadcrumbs";
-    // nav.insertAdjacentHTML(
-    //   "beforeend",
-    //   `
-
-    //   `
-    // );
 
     const container = document.createElement("div");
     container.classList.add("container");

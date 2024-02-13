@@ -345,7 +345,6 @@ main {
   margin-bottom: 50px;
 }
 
-#migas,
-#migas_restaurante {
+.breadcrumb {
   margin-left: 8%;
 }
