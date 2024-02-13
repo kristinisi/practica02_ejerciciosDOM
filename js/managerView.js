@@ -40,9 +40,7 @@ class ManagerView {
     this.categories.appendChild(container);
   }
   showRandomDishes(dishes) {
-    if (this.main.children.length > 0) {
-      this.main.children[0].remove();
-    }
+    this.main.replaceChildren();
     const container = document.createElement("section");
     container.id = "random-dishes";
     container.insertAdjacentHTML(
@@ -293,12 +291,28 @@ class ManagerView {
     }
   }
 
-  showRestaurant(restaurant) {
+  showRestaurant(restaurant, name) {
     this.categories.replaceChildren();
     this.main.replaceChildren();
+
+    console.log("estoy aqui");
+
+    const nav = document.createElement("nav");
+    nav.id = "migas_restaurante";
+    nav.ariaLabel = "breadcrumbs";
+    nav.insertAdjacentHTML(
+      "beforeend",
+      `
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item">Inicio</li>
+       <li class="breadcrumb-item">Restaurantes</li>
+       <li class="breadcrumb-item active">${name}</li>
+      </ol>
+      `
+    );
+
     const container = document.createElement("div");
     container.classList.add("container");
-
     if (restaurant) {
       console.log(restaurant.restaurant.description);
       container.id = "restaurant";
@@ -315,6 +329,7 @@ class ManagerView {
         `
       );
     }
+    this.main.append(nav);
     this.main.append(container);
   }
 

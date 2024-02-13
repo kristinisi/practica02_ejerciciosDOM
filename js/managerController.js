@@ -362,7 +362,7 @@ class ManagerController {
   handleRestaurant = (name) => {
     const rest = this[MODEL].createRestaurant(name);
     console.log(rest);
-    this[VIEW].showRestaurant(rest);
+    this[VIEW].showRestaurant(rest, name);
   };
 }
 export default ManagerController;
